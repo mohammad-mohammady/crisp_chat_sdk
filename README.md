@@ -3,6 +3,9 @@
 Impelemented native Crisp chat sdk on android and ios
 
 ### Preview
+<img width="453" alt="Screen Shot 2022-02-07 at 6 26 09 PM" src="https://user-images.githubusercontent.com/32927238/152813141-1443d234-d1bd-4aeb-b275-b3b653aa47d2.png">
+
+https://user-images.githubusercontent.com/32927238/152813181-80642f1a-35c0-428e-bfb9-dd2060cc7b16.mp4
 
 
 Android implementation:
