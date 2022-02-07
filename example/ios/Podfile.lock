@@ -1,0 +1,29 @@
+PODS:
+  - Crisp (0.1.30)
+  - crisp_chat_sdk (0.0.1):
+    - Crisp
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - crisp_chat_sdk (from `.symlinks/plugins/crisp_chat_sdk/ios`)
+  - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - Crisp
+
+EXTERNAL SOURCES:
+  crisp_chat_sdk:
+    :path: ".symlinks/plugins/crisp_chat_sdk/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  Crisp: 9885dbc560baa857109a489e4a292afb1901cf7f
+  crisp_chat_sdk: 95d8487c1888cbe11205d5ccaa6569f4f11f86d9
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+
+PODFILE CHECKSUM: 02d221f1e7d9462bff20092f7b45d080159f4852
+
+COCOAPODS: 1.11.2
