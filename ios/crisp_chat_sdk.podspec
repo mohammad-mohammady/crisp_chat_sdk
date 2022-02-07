@@ -15,7 +15,7 @@ Crisp chat android and ios sdk
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'Crisp'
+  s.dependency 'Crisp', '>= 1.1.0'
   s.platform = :ios, '9.0'
 
   # Flutter.framework does not contain a i386 slice.

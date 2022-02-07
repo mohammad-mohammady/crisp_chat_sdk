@@ -39,13 +39,13 @@ public class SwiftCrispChatSdkPlugin: NSObject, FlutterPlugin {
                       self.setUserPhone(call: call, result: result)
                   }
                   else if ("setSessionBool" == call.method) {
-                      self.setSessionData(call: call, result: result)
+                      self.setSessionBool(call: call, result: result)
                   }
                   else if ("setSessionInt" == call.method) {
-                      self.setSessionData(call: call, result: result)
+                      self.setSessionInt(call: call, result: result)
                   }
                   else if ("setSessionString" == call.method) {
-                      self.setSessionData(call: call, result: result)
+                      self.setSessionString(call: call, result: result)
                   }
                   else if ("setSessionSegment" == call.method) {
                       self.setSessionSegment(call: call, result: result)
@@ -56,7 +56,7 @@ public class SwiftCrispChatSdkPlugin: NSObject, FlutterPlugin {
   }
   
   private func openCrisp(call: FlutterMethodCall, result: FlutterResult) {
-          let bottomSheetVC = ViewController()
+          let bottomSheetVC = ChatViewController()
           let viewController = UIApplication.shared.delegate?.window??.rootViewController
           viewController?.present(bottomSheetVC, animated: true, completion: nil)
           result(String("IOS Crisp sdk loaded successful"))
@@ -64,78 +64,94 @@ public class SwiftCrispChatSdkPlugin: NSObject, FlutterPlugin {
       
       private func configureSdk(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.initialize(websiteId: args)
+          CrispSDK.configure(websiteID: args)
           result(String("IOS Crisp sdk initialized successful"))
       }
       
       private func setTokenID(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.tokenId = args
+          CrispSDK.setTokenID(tokenID: args)
           result(String("IOS Crisp sdk setTokenID successful"))
       }
       
       private func resetChatSession(call: FlutterMethodCall, result: FlutterResult) {
-          Crisp.session.reset()
+          CrispSDK.session.reset()
           result(String("IOS Crisp sdk resetChatSession successful"))
       }
       
       private func setUserAvatar(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.user.set(avatar: args)
+          CrispSDK.user.avatar = URL(string: args)
           result(String("IOS Crisp sdk setUserAvatar successful"))
       }
       
       private func setUserCompany(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! Dictionary<String, Any>
-          Crisp.session.set(data: args)
+          let name = args["name"] as? String
+          let url = args["url"] as? String
+          let companyDescription = args["companyDescription"] as? String
+          let employmentJson = args["employment"] as? Dictionary<String, Any>
+          let geolocationJson = args["geolocation"] as? Dictionary<String, Any>
+          var employment: Employment? = nil
+          var geolocation: Geolocation? = nil
+          if(employmentJson != nil) {
+              let title = employmentJson?["title"] as! String
+              let role = employmentJson?["role"] as! String
+              employment = Employment(title: title, role: role)
+          }
+          if(geolocationJson != nil) {
+              let city = employmentJson?["city"] as! String
+              let country = employmentJson?["country"] as! String
+              geolocation = Geolocation(city: city, country: country)
+          }
+          
+            CrispSDK.user.company = Company(name: name,
+                                            url: url != nil ? URL(string: url!) : nil,
+                                            companyDescription: companyDescription,
+                                            employment: employment,
+                                            geolocation: geolocation)
           result(String("IOS Crisp sdk setUserCompany successful"))
       }
       
       private func setUserEmail(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.user.set(email: args)
+          CrispSDK.user.email = args
           result(String("IOS Crisp sdk setUserEmail successful"))
       }
       
       private func setUserNickname(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.user.set(nickname: args)
+          CrispSDK.user.nickname = args
           result(String("IOS Crisp sdk setUserNickname successful"))
       }
       
       private func setUserPhone(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.user.set(phone: args)
+          CrispSDK.user.phone = args
           result(String("IOS Crisp sdk setUserPhone successful"))
       }
       
-      private func setSessionData(call: FlutterMethodCall, result: FlutterResult) {
+      private func setSessionBool(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! Dictionary<String, Any>
-          Crisp.session.set(data: args)
-          result(String("IOS Crisp sdk setSessionData successful"))
+          CrispSDK.session.setBool(args["value"] as! Bool, forKey: args["key"]as! String)
+          result(String("IOS Crisp sdk setSessionBool successful"))
       }
-      
+    
+    private func setSessionInt(call: FlutterMethodCall, result: FlutterResult) {
+        let args = call.arguments as! Dictionary<String, Any>
+        CrispSDK.session.setInt(args["value"] as! Int, forKey: args["key"]as! String)
+        result(String("IOS Crisp sdk setSessionInt successful"))
+    }
+    
+    private func setSessionString(call: FlutterMethodCall, result: FlutterResult) {
+        let args = call.arguments as! Dictionary<String, Any>
+        CrispSDK.session.setString(args["value"] as! String, forKey: args["key"]as! String)
+        result(String("IOS Crisp sdk setSessionString successful"))
+    }
+    
       private func setSessionSegment(call: FlutterMethodCall, result: FlutterResult) {
           let args = call.arguments as! String
-          Crisp.session.set(segment: args)
+          CrispSDK.session.segment = args
           result(String("IOS Crisp sdk setSessionSegment successful"))
       }
-}
-
-
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let crispView = CrispView()
-        crispView.bounds = view.bounds
-        crispView.center = view.center
-
-        view.addSubview(crispView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
