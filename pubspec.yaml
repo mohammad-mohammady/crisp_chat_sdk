@@ -1,6 +1,6 @@
 name: crisp_chat_sdk
 description: Crisp chat android and ios sdk
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/mohammad-mohammady/crisp_chat_sdk
 
 environment:

@@ -90,6 +90,7 @@ class CrispChatSdk {
     return status;
   }
 
+  /// Open chat view (this method open chat page)
   Future<String?> openChat() async {
     final String? status =
         await _channel.invokeMethod('openCrisp', );
