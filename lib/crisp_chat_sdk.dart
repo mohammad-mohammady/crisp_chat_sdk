@@ -83,17 +83,19 @@ class CrispChatSdk {
   }
 
   /// Sets a session segment
-  Future<String?> setSessionSegment(
-      {required String segment,}) async {
-    final String? status = await _channel
-        .invokeMethod('setSessionSegment',segment);
+  Future<String?> setSessionSegment({
+    required String segment,
+  }) async {
+    final String? status =
+        await _channel.invokeMethod('setSessionSegment', segment);
     return status;
   }
 
   /// Open chat view (this method open chat page)
   Future<String?> openChat() async {
-    final String? status =
-        await _channel.invokeMethod('openCrisp', );
+    final String? status = await _channel.invokeMethod(
+      'openCrisp',
+    );
     return status;
   }
 }
