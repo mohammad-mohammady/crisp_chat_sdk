@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * add sample to readme.
+
+## 0.0.4
+
+* Format dart codes.
