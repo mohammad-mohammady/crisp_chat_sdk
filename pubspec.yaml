@@ -1,6 +1,6 @@
 name: crisp_chat_sdk
-description: Native Crisp chat sdk of android and ios sdk in flutter, android sdk version is im.crisp:crisp-sdk:1.0.9 and ios sdk version is Crisp 1.1.0
-version: 0.0.4
+description: Native Crisp chat sdk of android and ios sdk in flutter, android sdk version is im.crisp:crisp-sdk:1.0.11 and ios sdk version is Crisp 1.1.0
+version: 0.0.5
 homepage: https://github.com/mohammad-mohammady/crisp_chat_sdk
 
 environment:

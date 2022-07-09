@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * Format dart codes.
+* 
+## 0.0.5
+
+* Upgrade android crispt native sdk to 1.0.11.
