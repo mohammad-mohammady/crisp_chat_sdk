@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * Upgrade android crispt native sdk to 1.0.11.
+
+* ## 0.0.6
+
+* Change android target version to 33.
