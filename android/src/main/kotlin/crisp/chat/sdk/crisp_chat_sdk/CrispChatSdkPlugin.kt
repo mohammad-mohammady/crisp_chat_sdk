@@ -45,7 +45,7 @@ class CrispChatSdkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             Crisp.configure(context, call.arguments.toString())
             result.success("Android Crisp sdk initialized successful");
         } else if (call.method == "setTokenID") {
-            Crisp.setTokenID(call.arguments.toString())
+            Crisp.setTokenID(context, call.arguments.toString())
             result.success("Android Crisp sdk setTokenID successful");
         } else if (call.method == "resetChatSession") {
             Crisp.resetChatSession(context)
